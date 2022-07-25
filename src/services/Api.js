@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Notify } from 'notiflix';
 
 const API_KEY = `27953461-d4616364e0672ac878ff8b77d`;
 
@@ -20,5 +21,9 @@ export default async function fetchResult(url, query, page) {
       return `No results with query "${query}"`;
     });
   const images = await response.data;
+
+  if (images.totalHits === 0) {
+    Notify.warning(`Sorry, no images found with query "${query}"`);
+  }
   return images;
 }

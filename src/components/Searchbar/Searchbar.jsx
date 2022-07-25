@@ -2,8 +2,8 @@ export default function Searchbar({ onSubmit }) {
   return (
     <header className="searchbar">
       <form className="form" onSubmit={onSubmit}>
-        <button type="submit" className="button">
-          <span className="button-label">Search</span>
+        <button type="submit" className="form-button">
+          <span className="form-button-label">Search</span>
         </button>
 
         <input
