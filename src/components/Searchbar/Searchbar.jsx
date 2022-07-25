@@ -1,28 +1,19 @@
-import { Component } from 'react';
+export default function Searchbar({ onSubmit }) {
+  return (
+    <header className="searchbar">
+      <form className="form" onSubmit={onSubmit}>
+        <button type="submit" className="button">
+          <span className="button-label">Search</span>
+        </button>
 
-export default class Searchbar extends Component {
-  state = {
-    searchQuery: '',
-    page: 1,
-  };
-
-  render() {
-    return (
-      <header className="searchbar">
-        <form className="form">
-          <button type="submit" className="button">
-            <span className="button-label">Search</span>
-          </button>
-
-          <input
-            className="input"
-            type="text"
-            autoComplete="off"
-            autoFocus
-            placeholder="Search images and photos"
-          />
-        </form>
-      </header>
-    );
-  }
+        <input
+          className="input"
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+        />
+      </form>
+    </header>
+  );
 }
