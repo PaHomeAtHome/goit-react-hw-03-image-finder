@@ -1,13 +1,15 @@
 import { Component } from 'react';
 import Container from './Container/Container';
+import Searchbar from './Searchbar/Searchbar';
+import ImageGallery from './ImageGallery/ImageGallery';
 
 export class App extends Component {
-  state = {
-    contacts: [],
-    filter: '',
-  };
-
   render() {
-    return <Container></Container>;
+    return (
+      <Container>
+        <Searchbar />
+        <ImageGallery />
+      </Container>
+    );
   }
 }
