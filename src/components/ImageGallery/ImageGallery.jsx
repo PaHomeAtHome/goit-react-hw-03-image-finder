@@ -32,7 +32,7 @@ export default class ImageGallery extends Component {
   render() {
     const { currentImage } = this.state;
     return (
-      <ImageGalleryStyled>
+      <ImageGalleryStyled className="gallery">
         {this.props.images.map(image => (
           <ImageGalleryItem
             image={image}

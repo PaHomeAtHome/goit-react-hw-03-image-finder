@@ -47,6 +47,7 @@ export class App extends Component {
 
   loadMore = () => {
     this.setState({ page: this.state.page + 1 });
+    return;
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -74,6 +75,13 @@ export class App extends Component {
           });
         })
         .catch(error => this.setState({ error, status: Status.REJECTED }));
+
+      setTimeout(() => {
+        window.scrollBy({
+          top: 9999,
+          behavior: 'smooth',
+        });
+      }, '500');
       return response;
     }
   }
