@@ -5,8 +5,8 @@ export default function Loader() {
   return (
     <LoaderStyled>
       <Bars
-        height="100"
-        width="100"
+        height="50"
+        width="50"
         radius="9"
         color="red"
         ariaLabel="three-dots-loading"

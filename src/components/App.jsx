@@ -6,6 +6,7 @@ import { Notify } from 'notiflix';
 import fetchResult from '../services/Api';
 import Button from './Button/Button';
 import Loader from './Loader/Loader';
+import Notification from './Notification/Notification';
 
 const URL = `https://pixabay.com/api/`;
 
@@ -74,16 +75,17 @@ export class App extends Component {
     const { status, response } = this.state;
     const PENDING = status === 'pending';
     const RESPONSE = response && response.length > 0;
-    // if (RESPONSE) {
-    //   const IMAGES_LIMIT = response.length >= 500;
-    //   return IMAGES_LIMIT;
-    // }
+    const IMAGE_LIMIT = RESPONSE && response.length >= 500;
+
     return (
       <Container>
         <Searchbar onSubmit={this.handleSubmit} />
         {RESPONSE && <ImageGallery images={this.state.response} />}
-        {RESPONSE && !PENDING && !response.length >= 500 && (
+        {RESPONSE && !PENDING && !IMAGE_LIMIT && (
           <Button loadMore={this.loadMore} />
+        )}
+        {!PENDING && !IMAGE_LIMIT && (
+          <Notification>Sorry, 500 images limit</Notification>
         )}
         {PENDING && <Loader />}
       </Container>
