@@ -71,13 +71,21 @@ export class App extends Component {
     }
   }
   render() {
-    const RESPONSE = this.state.response && this.state.response.length > 0;
+    const { status, response } = this.state;
+    const PENDING = status === 'pending';
+    const RESPONSE = response && response.length > 0;
+    // if (RESPONSE) {
+    //   const IMAGES_LIMIT = response.length >= 500;
+    //   return IMAGES_LIMIT;
+    // }
     return (
       <Container>
         <Searchbar onSubmit={this.handleSubmit} />
         {RESPONSE && <ImageGallery images={this.state.response} />}
-        {RESPONSE && <Button loadMore={this.loadMore} />}
-        {this.state.status === 'pending' && <Loader />}
+        {RESPONSE && !PENDING && !response.length >= 500 && (
+          <Button loadMore={this.loadMore} />
+        )}
+        {PENDING && <Loader />}
       </Container>
     );
   }

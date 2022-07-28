@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { ImageGalleryStyled } from './ImageGalleryStyled';
 
 import Modal from 'components/Modal/Modal';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
@@ -31,7 +32,7 @@ export default class ImageGallery extends Component {
   render() {
     const { currentImage } = this.state;
     return (
-      <ul className="gallery">
+      <ImageGalleryStyled>
         {this.props.images.map(image => (
           <ImageGalleryItem
             image={image}
@@ -47,7 +48,7 @@ export default class ImageGallery extends Component {
             closeModalState={this.closeModalState}
           />
         )}
-      </ul>
+      </ImageGalleryStyled>
     );
   }
 }

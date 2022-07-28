@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { OverlayStyled } from './Overlay';
+import { ModalStyled } from './ModalStyled';
 
 import * as ReactDOM from 'react-dom';
 
@@ -12,7 +14,7 @@ export default class Modal extends Component {
   }
 
   closeModal = e => {
-    if (e.target === document.querySelector('.overlay')) {
+    if (e.target === document.querySelector(`.modal-overlay`)) {
       this.props.closeModalState();
     }
   };
@@ -20,11 +22,11 @@ export default class Modal extends Component {
   render() {
     const { image } = this.props;
     return ReactDOM.createPortal(
-      <div className="overlay" onClick={this.closeModal}>
-        <div className="modal">
+      <OverlayStyled className="modal-overlay" onClick={this.closeModal}>
+        <ModalStyled>
           <img src={image.largeImageURL} alt={image.tags} />
-        </div>
-      </div>,
+        </ModalStyled>
+      </OverlayStyled>,
       document.getElementById('modal')
     );
   }

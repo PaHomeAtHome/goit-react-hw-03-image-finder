@@ -1,19 +1,26 @@
+import {
+  Header,
+  Form,
+  FormButton,
+  FormLabel,
+  FormInput,
+} from './SearchbarStyled';
+
 export default function Searchbar({ onSubmit }) {
   return (
-    <header className="searchbar">
-      <form className="form" onSubmit={onSubmit}>
-        <button type="submit" className="form-button">
-          <span className="form-button-label">Search</span>
-        </button>
+    <Header>
+      <Form onSubmit={onSubmit}>
+        <FormButton type="submit">
+          <FormLabel>Search</FormLabel>
+        </FormButton>
 
-        <input
-          className="input"
+        <FormInput
           type="text"
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
         />
-      </form>
-    </header>
+      </Form>
+    </Header>
   );
 }

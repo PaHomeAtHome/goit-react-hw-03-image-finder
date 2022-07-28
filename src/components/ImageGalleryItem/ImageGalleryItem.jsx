@@ -1,7 +1,9 @@
+import { ImageGalleryItemStyled } from './ImageGalleryItemStyled';
+
 export default function ImageGalleryItem({ image, toggleModal, setImage }) {
   const { webformatURL, tags } = image;
   return (
-    <li className="gallery-item">
+    <ImageGalleryItemStyled>
       <img
         src={webformatURL}
         alt={tags}
@@ -10,6 +12,6 @@ export default function ImageGalleryItem({ image, toggleModal, setImage }) {
           setImage(image);
         }}
       />
-    </li>
+    </ImageGalleryItemStyled>
   );
 }
