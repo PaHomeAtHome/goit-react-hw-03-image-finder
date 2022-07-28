@@ -5,6 +5,7 @@ import ImageGallery from './ImageGallery/ImageGallery';
 import { Notify } from 'notiflix';
 import fetchResult from '../services/Api';
 import Button from './Button/Button';
+import Loader from './Loader/Loader';
 
 const URL = `https://pixabay.com/api/`;
 
@@ -70,13 +71,13 @@ export class App extends Component {
     }
   }
   render() {
+    const RESPONSE = this.state.response && this.state.response.length > 0;
     return (
       <Container>
         <Searchbar onSubmit={this.handleSubmit} />
-        {this.state.response && <ImageGallery images={this.state.response} />}
-        {this.state.response && this.state.response.length > 0 && (
-          <Button loadMore={this.loadMore} />
-        )}
+        {RESPONSE && <ImageGallery images={this.state.response} />}
+        {RESPONSE && <Button loadMore={this.loadMore} />}
+        <Loader />
       </Container>
     );
   }

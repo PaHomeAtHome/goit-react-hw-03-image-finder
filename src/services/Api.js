@@ -21,7 +21,6 @@ export default async function fetchResult(url, query, page) {
       return `No results with query "${query}"`;
     });
   const images = await response.data;
-
   if (images.totalHits === 0) {
     Notify.warning(`Sorry, no images found with query "${query}"`);
   }
