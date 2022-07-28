@@ -23,13 +23,18 @@ export class App extends Component {
     page: 1,
     status: Status.IDLE,
     error: null,
+    hits: null,
   };
 
   handleSubmit = event => {
     event.preventDefault();
     const query = event.target.elements[1].value;
-    this.setState({ page: 1 });
-    this.setState({ response: null });
+    this.setState({
+      page: 1,
+      response: null,
+      hits: null,
+      error: null,
+    });
 
     if (query.trim() === '') {
       Notify.failure('Type search query');
@@ -65,6 +70,7 @@ export class App extends Component {
           this.setState({
             response: [...response.hits],
             status: Status.RESOLVED,
+            hits: response.totalHits,
           });
         })
         .catch(error => this.setState({ error, status: Status.REJECTED }));
@@ -72,19 +78,20 @@ export class App extends Component {
     }
   }
   render() {
-    const { status, response } = this.state;
+    const { status, response, hits } = this.state;
     const PENDING = status === 'pending';
     const RESPONSE = response && response.length > 0;
     const IMAGE_LIMIT = RESPONSE && response.length >= 500;
+    const LOW_IMAGE_COUNT = RESPONSE && hits <= 12;
 
     return (
       <Container>
         <Searchbar onSubmit={this.handleSubmit} />
-        {RESPONSE && <ImageGallery images={this.state.response} />}
-        {RESPONSE && !PENDING && !IMAGE_LIMIT && (
+        {RESPONSE && <ImageGallery images={response} />}
+        {RESPONSE && !PENDING && !IMAGE_LIMIT && !LOW_IMAGE_COUNT && (
           <Button loadMore={this.loadMore} />
         )}
-        {!PENDING && !IMAGE_LIMIT && (
+        {!PENDING && IMAGE_LIMIT && (
           <Notification>Sorry, 500 images limit</Notification>
         )}
         {PENDING && <Loader />}
