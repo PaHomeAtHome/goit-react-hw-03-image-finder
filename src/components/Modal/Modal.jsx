@@ -11,10 +11,16 @@ export default class Modal extends Component {
     document.removeEventListener('keydown', this.props.closeModal);
   }
 
+  closeModal = e => {
+    if (e.target === document.querySelector('.overlay')) {
+      this.props.closeModalState();
+    }
+  };
+
   render() {
-    const { image, toggleModal } = this.props;
+    const { image } = this.props;
     return ReactDOM.createPortal(
-      <div className="overlay" onClick={toggleModal}>
+      <div className="overlay" onClick={this.closeModal}>
         <div className="modal">
           <img src={image.largeImageURL} alt={image.tags} />
         </div>

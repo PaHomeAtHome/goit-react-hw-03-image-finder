@@ -22,7 +22,14 @@ export default class ImageGallery extends Component {
     this.setState({ currentImage: image });
   };
 
+  closeModalState = () => {
+    this.setState({
+      isModalOpen: false,
+    });
+  };
+
   render() {
+    const { currentImage } = this.state;
     return (
       <ul className="gallery">
         {this.props.images.map(image => (
@@ -35,9 +42,9 @@ export default class ImageGallery extends Component {
         ))}
         {this.state.isModalOpen && (
           <Modal
-            image={this.state.currentImage}
-            toggleModal={this.toggleModal}
+            image={currentImage}
             closeModal={this.closeModal}
+            closeModalState={this.closeModalState}
           />
         )}
       </ul>

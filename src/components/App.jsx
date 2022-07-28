@@ -77,7 +77,7 @@ export class App extends Component {
         <Searchbar onSubmit={this.handleSubmit} />
         {RESPONSE && <ImageGallery images={this.state.response} />}
         {RESPONSE && <Button loadMore={this.loadMore} />}
-        <Loader />
+        {this.state.status === 'pending' && <Loader />}
       </Container>
     );
   }
