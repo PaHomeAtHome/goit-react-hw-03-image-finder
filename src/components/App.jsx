@@ -90,7 +90,7 @@ export class App extends Component {
     const PENDING = status === 'pending';
     const RESPONSE = response && response.length > 0;
     const IMAGE_LIMIT = RESPONSE && response.length >= 500;
-    const LOW_IMAGE_COUNT = RESPONSE && hits <= 12;
+    const LOW_IMAGE_COUNT = RESPONSE && hits <= 12 || RESPONSE && response.length%12 !== 0;
 
     return (
       <Container>
